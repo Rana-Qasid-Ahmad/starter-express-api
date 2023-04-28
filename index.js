@@ -19,7 +19,7 @@ app.post('/', async(req, res) => {
         res.status(500).send(error)
     }
 })
-app.get('/', async(req, res) => {
+app.get('/users', async(req, res) => {
         try {
             const post = await postModel.find();
             res.json(post);

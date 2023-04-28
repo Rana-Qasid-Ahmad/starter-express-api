@@ -7,7 +7,9 @@ app.get('/', (req, resp) => {
     resp.sendFile(`${filesPath}/index.html`)
 })
 
-
+app.get('/login', (req, resp) => {
+    resp.sendFile(`${filesPath}/form.html`)
+})
 
 
 app.listen(process.env.PORT || 3000)

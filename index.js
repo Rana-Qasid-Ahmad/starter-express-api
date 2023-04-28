@@ -6,9 +6,9 @@ const path = require('path');
 const filesPath = path.join(__dirname, "files");
 
 mongoose.connect(DB).then(() => {
-    resp.send("DataBase Connected")
+    console.log("DataBase Connected")
 }).catch((err) => {
-    resp.send("Database Not Connected")
+    console.log("Database Not Connected")
 })
 
 app.get('/', (req, resp) => {

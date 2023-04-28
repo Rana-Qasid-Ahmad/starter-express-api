@@ -10,8 +10,13 @@ dbConnect()
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.post('/', async(req, res) => {
-    const { title, content } = req.body;
+app.get('/register', async(req, resp) => {
+    resp.sendFile(`${filesPath}/register.html`);
+
+})
+app.post('/register', async(req, res) => {
+    const title = req.body.title;
+    const content = req.body.content;
     try {
         const newPost = await postModel.create({ title, content });
         res.json(newPost);

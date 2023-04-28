@@ -26,16 +26,18 @@ app.post('/register', async(req, res) => {
     }
 })
 app.get('/users', async(req, res) => {
-        try {
-            const post = await postModel.find();
-            res.json(post);
-        } catch (error) {
-            res.status(500).send(error)
-        }
-    })
-    // app.get('/', (req, resp) => {
-    //     resp.sendFile(`${filesPath}/index.html`)
-    // })
+    try {
+        const post = await postModel.find();
+        res.json(post);
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+app.get('/', (req, resp) => {
+    resp.send(`
+        <h1><a href="/user">View Data Of All Users</a></h1>
+    `)
+})
 
 // app.get('/login', (req, resp) => {
 //     resp.sendFile(`${filesPath}/form.html`)

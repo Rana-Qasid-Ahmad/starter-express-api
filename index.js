@@ -35,7 +35,8 @@ app.get('/users', async(req, res) => {
 })
 app.get('/', (req, resp) => {
     resp.send(`
-        <h1><a href="/user">View Data Of All Users</a></h1>
+        <h2><a href="/users">View Data Of All Users</a></h2>
+        <h2><a href="/register">Add a new user</a></h2>
     `)
 })
 

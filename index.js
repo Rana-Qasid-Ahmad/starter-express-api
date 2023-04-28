@@ -15,10 +15,11 @@ app.get('/register', async(req, resp) => {
 
 })
 app.post('/register', async(req, res) => {
-    const title = req.body.title;
-    const content = req.body.content;
+    const username = req.body.username;
+    const password = req.body.password;
+    const email = req.body.email;
     try {
-        const newPost = await postModel.create({ title, content });
+        const newPost = await postModel.create({ username, password, email });
         res.json(newPost);
     } catch (error) {
         res.status(500).send(error)

@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema({
-    title: 'String',
-    content: 'String'
+    username: 'String',
+    password: 'String',
+    email: 'String'
 }, { timestamps: true })
 
 const Post = mongoose.model('users', Schema);

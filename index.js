@@ -1,23 +1,31 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const DB = 'mongodb+srv://zrana1791:QasidRana@cluster0.xopx0j9.mongodb.net/?retryWrites=true&w=majority'
 const path = require('path');
 const filesPath = path.join(__dirname, "files");
+const dbConnect = require('./dbConnect')
+const postModel = require("./postModel")
 
-mongoose.connect(DB).then(() => {
-    console.log("DataBase Connected")
-}).catch((err) => {
-    console.log("Database Not Connected")
-})
+dbConnect()
 
-app.get('/', (req, resp) => {
-    resp.sendFile(`${filesPath}/index.html`)
-})
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.post('/', async(req, res) => {
+        const { title, content } = req.body;
+        try {
+            const newPost = await postModel.create({ title, content });
+            res.json(newPost);
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    })
+    // app.get('/', (req, resp) => {
+    //     resp.sendFile(`${filesPath}/index.html`)
+    // })
 
-app.get('/login', (req, resp) => {
-    resp.sendFile(`${filesPath}/form.html`)
-})
+// app.get('/login', (req, resp) => {
+//     resp.sendFile(`${filesPath}/form.html`)
+// })
 
 
 app.listen(process.env.PORT || 3000)
